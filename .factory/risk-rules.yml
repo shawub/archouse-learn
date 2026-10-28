@@ -1,0 +1,60 @@
+# Risk rules for shawub/archouse-learn — product repo defaults.
+# Lower strictness than the factory repo: high/critical pause, medium/low auto-advance.
+version: 1
+
+confidence_threshold: 0.75
+auto_advance_below: high
+default_tier: low
+
+rules:
+  - id: auth_code
+    description: "Modifies authentication or user account logic"
+    tier: critical
+    match:
+      paths:
+        - "src/auth.ts"
+        - "src/middleware.ts"
+        - "src/lib/actions/auth.ts"
+        - "src/app/api/auth/**"
+      keywords:
+        - authentication
+        - session
+        - password
+        - jwt
+        - bcrypt
+
+  - id: database_schema
+    description: "Modifies Prisma schema or migrations"
+    tier: high
+    match:
+      paths:
+        - "prisma/**"
+      keywords:
+        - migration
+        - schema change
+        - prisma migrate
+
+  - id: student_data
+    description: "Modifies how student progress or personal data is handled"
+    tier: high
+    match:
+      paths:
+        - "src/lib/actions/student.ts"
+        - "src/lib/actions/teacher.ts"
+      keywords:
+        - progress
+        - enrollment
+        - student data
+        - gdpr
+
+  - id: dependency_update
+    description: "Updates package dependencies"
+    tier: medium
+    match:
+      paths:
+        - "package.json"
+        - "pnpm-lock.yaml"
+      keywords:
+        - upgrade
+        - update dependency
+        - bump
