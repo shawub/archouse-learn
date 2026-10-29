@@ -1,6 +1,6 @@
 # archouse-learn
 
-A learning management system for UK schools. Teachers create courses and assign them; students work through lessons and track progress. Built with Next.js 16, Tailwind CSS, NextAuth v5, Prisma, and Neon Postgres.
+A learning management system for UK schools. Teachers create courses and assign them; students work through lessons and track progress. Built with Next.js 16, Tailwind CSS, NextAuth v5, Prisma, and Prisma Postgres.
 
 ## Stack
 
@@ -8,7 +8,7 @@ A learning management system for UK schools. Teachers create courses and assign 
 |---|---|
 | Framework | Next.js 16 (App Router) |
 | Auth | NextAuth v5 (Auth.js) — credentials + JWT |
-| Database | Neon (serverless Postgres) via Prisma |
+| Database | Prisma Postgres via `@prisma/adapter-pg` |
 | Styling | Tailwind CSS |
 | Runtime | Node.js 22, pnpm |
 
@@ -33,7 +33,7 @@ A learning management system for UK schools. Teachers create courses and assign 
 
 - Node.js 22+
 - pnpm (`npm install -g pnpm`)
-- A [Neon](https://console.neon.tech) project (free tier is fine)
+- A [Prisma Postgres](https://console.prisma.io) project (free tier is fine)
 
 ### 2. Install
 
@@ -46,14 +46,14 @@ pnpm install
 ### 3. Configure environment
 
 ```bash
-cp .env.example .env.local
+cp .env.example .env
 ```
 
-Edit `.env.local`:
+Edit `.env`:
 
 ```env
-# Neon connection string — from console.neon.tech → your project → Connection Details
-DATABASE_URL="postgresql://user:password@host/dbname?sslmode=require"
+# Prisma Postgres connection string — from console.prisma.io → your project → Connection Details
+DATABASE_URL="postgresql://user:password@pooled.db.prisma.io:5432/postgres?sslmode=require"
 
 # Auth.js secret — generate once and keep it
 AUTH_SECRET="$(openssl rand -base64 32)"
@@ -65,7 +65,7 @@ NEXTAUTH_URL="http://localhost:3000"
 ### 4. Set up the database
 
 ```bash
-# Push the schema to Neon (no migration history, good for dev)
+# Push the schema (no migration history, good for dev)
 pnpm db:push
 
 # Seed with demo users and sample courses
@@ -102,7 +102,7 @@ cloudflared tunnel --url http://localhost:3000
 
 Cloudflare prints a temporary URL like `https://random-words.trycloudflare.com`. It lives as long as the process does.
 
-**Before sharing the URL**, update `.env.local`:
+**Before sharing the URL**, update `.env`:
 
 ```env
 NEXTAUTH_URL="https://random-words.trycloudflare.com"
@@ -140,7 +140,7 @@ Run the tunnel:
 cloudflared tunnel run archouse-learn
 ```
 
-Update `.env.local`:
+Update `.env`:
 
 ```env
 NEXTAUTH_URL="https://learn.yourdomain.com"
@@ -156,7 +156,7 @@ Restart `pnpm dev`.
 ## Database scripts
 
 ```bash
-pnpm db:push       # sync schema to Neon without migrations (dev)
+pnpm db:push       # sync schema without migrations (dev)
 pnpm db:migrate    # create a migration file and apply it (production-style)
 pnpm db:seed       # seed demo users and courses
 pnpm db:studio     # open Prisma Studio (local DB browser)

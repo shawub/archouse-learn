@@ -1,7 +1,10 @@
+import { Pool } from 'pg'
+import { PrismaPg } from '@prisma/adapter-pg'
 import { PrismaClient } from '@prisma/client'
 import bcrypt from 'bcryptjs'
 
-const prisma = new PrismaClient()
+const pool = new Pool({ connectionString: process.env.DATABASE_URL })
+const prisma = new PrismaClient({ adapter: new PrismaPg(pool) })
 
 async function main() {
   const teacherHash = await bcrypt.hash('teacher123', 12)
