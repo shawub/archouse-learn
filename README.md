@@ -153,6 +153,38 @@ Restart `pnpm dev`.
 
 ---
 
+## Shutting down
+
+```bash
+# Stop the dev server
+Ctrl+C in the terminal running pnpm dev
+
+# Stop the tunnel
+Ctrl+C in the terminal running cloudflared tunnel run
+
+# Kill both if running in the background
+pkill -f "next dev"
+pkill -f "cloudflared"
+```
+
+To delete the tunnel entirely (removes it from Cloudflare):
+
+```bash
+cloudflared tunnel delete archouse-learn
+```
+
+To recreate it later:
+
+```bash
+cloudflared tunnel create archouse-learn
+cloudflared tunnel route dns archouse-learn learn.shoggs.org
+cloudflared tunnel run archouse-learn
+```
+
+The DNS CNAME for `learn.shoggs.org` persists in Cloudflare after tunnel deletion — no need to re-route DNS if you recreate the tunnel with the same name.
+
+---
+
 ## Database scripts
 
 ```bash
