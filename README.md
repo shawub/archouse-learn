@@ -106,16 +106,7 @@ Cloudflare prints a temporary URL like `https://random-words.trycloudflare.com`.
 
 ```env
 NEXTAUTH_URL="https://random-words.trycloudflare.com"
-```
-
-And add the origin to `next.config.ts`:
-
-```ts
-const config: NextConfig = {
-  experimental: {
-    serverActions: { allowedOrigins: ['localhost:3000', 'random-words.trycloudflare.com'] },
-  },
-}
+ALLOWED_ORIGINS="random-words.trycloudflare.com"
 ```
 
 Then restart `pnpm dev`.
@@ -153,17 +144,12 @@ Update `.env.local`:
 
 ```env
 NEXTAUTH_URL="https://learn.yourdomain.com"
-```
-
-Update `next.config.ts`:
-
-```ts
-serverActions: { allowedOrigins: ['localhost:3000', 'learn.yourdomain.com'] },
+ALLOWED_ORIGINS="learn.yourdomain.com"
 ```
 
 Restart `pnpm dev`.
 
-> **Note:** `NEXTAUTH_URL` and `allowedOrigins` must always match the hostname you're accessing the app on. Mismatches cause auth redirects and CSRF errors.
+> **Note:** `NEXTAUTH_URL` and `ALLOWED_ORIGINS` must always match the hostname you're accessing the app on. Mismatches cause auth redirects and CSRF errors.
 
 ---
 
