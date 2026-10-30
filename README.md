@@ -90,6 +90,57 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ---
 
+## Running with Docker
+
+Docker is the recommended way to run archouse-learn in a shared or always-on environment (e.g. Mac Mini). The container builds Next.js at startup, so all runtime env vars are available during the build.
+
+### First run
+
+```bash
+# Build the image and start the container
+docker compose up -d
+
+# Watch startup logs (build takes ~2 min on first run)
+docker logs -f archouse-learn
+```
+
+The app is ready when you see `▶ Local: http://localhost:3000`.
+
+### Environment
+
+The container reads `.env` via `env_file`. Ensure `.env` is populated before starting (see [Local setup](#local-setup) above). `DATABASE_URL`, `AUTH_SECRET`, and `NEXTAUTH_URL` are required.
+
+For a public URL via Cloudflare Tunnel, set:
+
+```env
+NEXTAUTH_URL="https://learn.yourdomain.com"
+ALLOWED_ORIGINS="learn.yourdomain.com"
+```
+
+Then restart the container:
+
+```bash
+docker compose restart archouse-learn
+```
+
+### Useful commands
+
+```bash
+docker compose up -d              # start (or rebuild after Dockerfile changes)
+docker compose restart archouse-learn  # restart without rebuilding
+docker compose down               # stop and remove container
+docker logs -f archouse-learn     # tail logs
+docker exec -it archouse-learn sh # open a shell inside the container
+```
+
+### Auto-deploy on merge
+
+The factory's `/webhook/github` handler watches for push events on `archouse-learn`'s main branch. When a PR merges, it runs `git pull --rebase` on the local clone and restarts the container automatically.
+
+**One-time setup:** in GitHub → archouse-learn → Settings → Webhooks, add `push` to the subscribed events on the existing factory webhook.
+
+---
+
 ## Publishing via Cloudflare Tunnel
 
 Cloudflare Tunnel gives the app a public HTTPS URL without port forwarding or a static IP. Two modes:
