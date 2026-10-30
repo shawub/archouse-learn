@@ -5,4 +5,9 @@ services:
     ports:
       - "3000:3000"
     env_file: .env
+    environment:
+      # Required when running behind Cloudflare Tunnel or any reverse proxy.
+      # Tells Auth.js to trust the forwarded Host header rather than checking
+      # it against NEXTAUTH_URL.
+      AUTH_TRUST_HOST: "true"
     restart: unless-stopped
