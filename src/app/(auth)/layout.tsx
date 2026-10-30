@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <div className="flex-1 bg-gray-50 flex flex-col">
       <div className="px-6 py-4">
         <Link href="/" className="text-lg font-bold text-brand-600">Archouse Learn</Link>
       </div>
