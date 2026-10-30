@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { Footer } from '@/components/footer'
 
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -11,6 +12,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
           {children}
         </div>
       </div>
+      <Footer />
     </div>
   )
 }
