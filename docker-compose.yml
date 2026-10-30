@@ -1,0 +1,8 @@
+services:
+  archouse-learn:
+    build: .
+    container_name: archouse-learn
+    ports:
+      - "3000:3000"
+    env_file: .env
+    restart: unless-stopped
