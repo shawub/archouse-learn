@@ -11,3 +11,12 @@ services:
       # it against NEXTAUTH_URL.
       AUTH_TRUST_HOST: "true"
     restart: unless-stopped
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    restart: unless-stopped
+    command: tunnel --no-autoupdate run --url http://archouse-learn:3000
+    environment:
+      - TUNNEL_TOKEN=${CLOUDFLARE_TUNNEL_TOKEN}
+    depends_on:
+      - archouse-learn
