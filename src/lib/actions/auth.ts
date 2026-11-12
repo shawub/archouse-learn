@@ -6,6 +6,15 @@ import bcrypt from 'bcryptjs'
 import { z } from 'zod'
 import { AuthError } from 'next-auth'
 import { redirect } from 'next/navigation'
+import { headers } from 'next/headers'
+import { mailer } from '@/lib/mailer'
+import { prismaPasswordResetStore } from '@/lib/password-reset-store'
+import {
+  requestPasswordReset,
+  resetPassword,
+  type ForgotPasswordResult,
+  type ResetPasswordResult,
+} from '@/lib/password-reset'
 import type { Role } from '@prisma/client'
 
 const loginSchema = z.object({
@@ -82,4 +91,31 @@ export async function registerAction(_: ActionResult | null, formData: FormData)
   })
 
   redirect(parsed.data.role === 'TEACHER' ? '/teacher/dashboard' : '/student/dashboard')
+}
+
+export async function forgotPasswordAction(
+  _: ForgotPasswordResult | null,
+  formData: FormData,
+): Promise<ForgotPasswordResult> {
+  const h = await headers()
+  const ip = h.get('x-forwarded-for')?.split(',')[0]?.trim() || h.get('x-real-ip') || 'unknown'
+
+  return requestPasswordReset(
+    {
+      store: prismaPasswordResetStore,
+      mailer,
+      baseUrl: process.env.NEXTAUTH_URL || 'http://localhost:3000',
+    },
+    { email: formData.get('email'), ip },
+  )
+}
+
+export async function resetPasswordAction(
+  _: ResetPasswordResult | null,
+  formData: FormData,
+): Promise<ResetPasswordResult> {
+  return resetPassword(
+    { store: prismaPasswordResetStore },
+    { token: formData.get('token') ?? '', password: formData.get('password') },
+  )
 }

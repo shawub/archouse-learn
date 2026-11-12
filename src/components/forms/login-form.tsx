@@ -30,7 +30,12 @@ export function LoginForm({ defaultEmail }: { defaultEmail?: string }) {
       </div>
 
       <div className="space-y-1">
-        <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
+        <div className="flex items-center justify-between">
+          <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
+          <Link href="/forgot-password" className="text-sm text-brand-600 font-medium hover:underline">
+            Forgot password?
+          </Link>
+        </div>
         <input
           id="password" name="password" type="password" required autoComplete="current-password"
           className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent"

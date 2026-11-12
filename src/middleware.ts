@@ -9,7 +9,7 @@ export default auth((req) => {
   const isAuthed = !!req.auth
   const role = req.auth?.user?.role
 
-  const publicPaths = ['/', '/login', '/register']
+  const publicPaths = ['/', '/login', '/register', '/forgot-password', '/reset-password']
   if (publicPaths.some(p => pathname === p)) return NextResponse.next()
 
   if (!isAuthed) {
