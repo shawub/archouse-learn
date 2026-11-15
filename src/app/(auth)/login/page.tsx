@@ -1,6 +1,8 @@
 import { LoginForm } from '@/components/forms/login-form'
 import { getOAuthAvailability } from '@/lib/auth-providers'
 
+export const dynamic = 'force-dynamic'
+
 export default async function LoginPage({
   searchParams,
 }: {
