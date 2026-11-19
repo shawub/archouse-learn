@@ -4,13 +4,21 @@ A UK-school learning platform where teachers publish courses and learners discov
 
 ## Language
 
+**User**:
+A person with an account on archouse learn. A user may act as a teacher (publishing courses, hosting seminars), a learner (subscribing to other teachers, consuming courses), or both simultaneously. These are non-exclusive capabilities, not a fixed identity.
+_Avoid_: Account, Member
+
 **Learner**:
-A user who subscribes to teachers and consumes published courses on the platform.
+The capability a user exercises when subscribing to teachers and consuming published courses. Any user can be a learner.
 _Avoid_: Student, Pupil
 
 **Teacher**:
-A user who publishes courses and hosts seminars on the platform.
+The capability a user exercises when publishing courses and hosting seminars. Any user can be a teacher.
 _Avoid_: Educator, Instructor
+
+**Interests**:
+The subjects and KeyStages a user selects to filter teacher discovery. Set at sign-up, editable. Used only as search/browse filters — not for algorithmic personalisation or recommendations.
+_Avoid_: Preferences, Topics
 
 **Subscribe**:
 The act of a learner gaining access to all of a teacher's published courses. One subscription covers the full teacher catalogue.
