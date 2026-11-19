@@ -12,6 +12,7 @@ Domain: UK schools, KeyStage KS1–KS4, 11 curriculum subjects. Load `grilling` 
 ## Decisions so far
 
 - [Vocabulary: learner, teacher, subscribe, publish](decisions/01-vocabulary.md): Learner (not Student); Subscribe to teacher = access to all published courses; Publish means discoverable; Seminar for live sessions; Ask for learner questions.
+- [UK Online Safety Act 2023 obligations](decisions/03-osa-2023-research.md): Regulated U2U service; HEAA conditional on risk assessment; 3 risk assessments required before launch; voluntary teacher verification is near-required; ICO Children's Code demands DPIA + high-privacy defaults + age-based consent.
 
 ## Added so far
 
@@ -21,6 +22,11 @@ Domain: UK schools, KeyStage KS1–KS4, 11 curriculum subjects. Load `grilling` 
 - Term: **Seminar** (live session)
 - Term: **Ask** (learner question on content or content request)
 - File: `GLOSSARY.md` (created with all settled terms)
+- Constraint: 3 OSA risk assessments required before launch (illegal content, children's access, children's risk)
+- Constraint: ICO Children's Code — DPIA before launch, parental consent under-13s, child consent 13–17s, high-privacy defaults
+- Constraint: HEAA (age assurance) — conditional on children's risk assessment outcome
+- Constraint: voluntary teacher identity verification — practical near-requirement
+- File: `.scratch/core-concept/research/osa-2023.md` (full research)
 
 ## Not yet specified
 
