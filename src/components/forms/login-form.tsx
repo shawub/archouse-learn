@@ -15,11 +15,13 @@ const oauthErrorMessages: Record<string, string> = {
 export function LoginForm({
   defaultEmail,
   error,
+  notice,
   showGoogle = false,
   showMicrosoft = false,
 }: {
   defaultEmail?: string
   error?: string
+  notice?: string
   showGoogle?: boolean
   showMicrosoft?: boolean
 }) {
@@ -34,6 +36,12 @@ export function LoginForm({
           <h1 className="text-2xl font-bold text-gray-900">Welcome back</h1>
           <p className="text-sm text-gray-500 mt-1">Sign in to your account</p>
         </div>
+
+        {notice && !errorMessage && (
+          <div role="status" className="bg-green-50 border border-green-200 text-green-800 text-sm px-4 py-3 rounded-lg">
+            {notice}
+          </div>
+        )}
 
         {errorMessage && (
           <div role="alert" className="bg-red-50 border border-red-200 text-red-700 text-sm px-4 py-3 rounded-lg">
@@ -51,7 +59,12 @@ export function LoginForm({
         </div>
 
         <div className="space-y-1">
-          <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
+          <div className="flex items-center justify-between">
+            <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
+            <Link href="/forgot-password" className="text-sm text-brand-600 font-medium hover:underline">
+              Forgot password?
+            </Link>
+          </div>
           <input
             id="password" name="password" type="password" required autoComplete="current-password"
             className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent"

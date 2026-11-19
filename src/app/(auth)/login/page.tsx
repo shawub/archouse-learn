@@ -6,9 +6,18 @@ export const dynamic = 'force-dynamic'
 export default async function LoginPage({
   searchParams,
 }: {
-  searchParams: Promise<{ email?: string; error?: string }>
+  searchParams: Promise<{ email?: string; error?: string; reset?: string }>
 }) {
-  const { email, error } = await searchParams
+  const { email, error, reset } = await searchParams
   const { showGoogle, showMicrosoft } = getOAuthAvailability()
-  return <LoginForm defaultEmail={email} error={error} showGoogle={showGoogle} showMicrosoft={showMicrosoft} />
+  const notice = reset === 'success' ? 'Your password has been reset. Sign in with your new password.' : undefined
+  return (
+    <LoginForm
+      defaultEmail={email}
+      error={error}
+      notice={notice}
+      showGoogle={showGoogle}
+      showMicrosoft={showMicrosoft}
+    />
+  )
 }

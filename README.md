@@ -19,6 +19,8 @@ A learning management system for UK schools. Teachers create courses and assign 
 | `/` | public | Landing page |
 | `/login` | public | Sign in |
 | `/register` | public | Create account |
+| `/forgot-password` | public | Request a password reset link |
+| `/reset-password?token=…` | public | Set a new password from a reset link |
 | `/teacher/dashboard` | TEACHER | Overview |
 | `/teacher/courses` | TEACHER | Manage courses and lessons |
 | `/teacher/students` | TEACHER | View enrolled students |
@@ -87,6 +89,13 @@ Open [http://localhost:3000](http://localhost:3000).
 | Teacher | teacher@example.com | teacher123 |
 | Student | alice@example.com | student123 |
 | Student | bob@example.com | student123 |
+
+#### Password reset
+
+There is no email provider yet, so reset links are written to the server log
+(`[mailer] Password reset link for …`) instead of being emailed. Links expire after
+60 minutes and work once. Accounts created with Google or Microsoft can use a reset link
+to add a password. Requests are rate-limited in memory (per process).
 
 ---
 

@@ -1,6 +1,7 @@
 import NextAuth from 'next-auth'
 import { NextResponse } from 'next/server'
 import { authConfig } from './auth.config'
+import { isPublicPath } from './lib/public-paths'
 
 const { auth } = NextAuth(authConfig)
 
@@ -9,8 +10,7 @@ export default auth((req) => {
   const isAuthed = !!req.auth
   const role = req.auth?.user?.role
 
-  const publicPaths = ['/', '/login', '/register', '/ost']
-  if (publicPaths.some(p => pathname === p)) return NextResponse.next()
+  if (isPublicPath(pathname)) return NextResponse.next()
 
   if (!isAuthed) {
     const url = new URL('/login', req.url)
