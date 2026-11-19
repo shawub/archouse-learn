@@ -21,7 +21,7 @@ The relationship between a learner and a teacher, created by subscribing. Grants
 _Avoid_: Enrollment, Registration
 
 **Publish**:
-The act of a teacher making a course discoverable to learners on the platform. Published courses appear in search results and are accessible to subscribed learners.
+The act of a teacher making a course discoverable to learners on the platform. Published courses appear in search results and are accessible to subscribed learners. A teacher can unpublish a course to remove it from discovery; subscriber-retention behaviour on unpublish is an implementation decision.
 _Avoid_: Release, Share
 
 **Course**:
