@@ -15,6 +15,7 @@ Domain: UK schools, KeyStage KS1–KS4, 11 curriculum subjects. Load `grilling` 
 - [UK Online Safety Act 2023 obligations](decisions/03-osa-2023-research.md): Regulated U2U service; HEAA conditional on risk assessment; 3 risk assessments required before launch; voluntary teacher verification is near-required; ICO Children's Code demands DPIA + high-privacy defaults + age-based consent.
 - [Teacher public profile and course publishing states](decisions/02-teacher-profile.md): Profiles are public (browsable by anyone); findable by subject and KeyStage; metadata only before subscribing; courses publish and unpublish.
 - [Learner sign-up, role claiming, and safeguarding design](decisions/04-learner-signup-safeguarding.md): Any user can publish (teacher) and/or subscribe (learner) — non-exclusive capabilities. No age collected; universal child-safe defaults. Interests = subject/KeyStage filters. Learners report content; platform removes and can suspend.
+- [Pitched questions and content requests](decisions/05-pitched-questions.md): Questions attach to lessons (not courses), private to teacher by default; teacher controls Q&A visibility. Content requests go to teacher only. Learner identity never exposed.
 
 ## Added so far
 
@@ -36,6 +37,8 @@ Domain: UK schools, KeyStage KS1–KS4, 11 curriculum subjects. Load `grilling` 
 - Constraint: universal child-safe defaults for all accounts (no age collected)
 - Constraint: content reporting and removal capability (OSA-mandated)
 - Constraint: no direct messaging (safeguarding boundary by omission)
+- Interaction: lesson questions (private-first, teacher-controlled Q&A)
+- Interaction: content requests (teacher-only inbox, not visible to other learners)
 
 ## Not yet specified
 

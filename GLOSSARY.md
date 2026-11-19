@@ -41,7 +41,7 @@ A live session hosted by a teacher, available for subscribed learners to attend.
 _Avoid_: Session, Class, Live lesson, Webinar
 
 **Ask**:
-The verb for learner interactions with a teacher: asking a question on existing content ("ask a question") or requesting new content on a topic ("ask for content"). These are two distinct interactions that share one verb.
+The verb for two distinct learner interactions with a teacher. "Ask a question" is attached to a specific lesson, private to the teacher by default; the teacher controls whether the Q&A is published to subscribers. "Ask for content" is a request for a new topic, visible only to the teacher. Learner identity is never exposed in published Q&A.
 _Avoid_: Pitch, Submit, Post
 
 ## Relationships
