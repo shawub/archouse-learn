@@ -12,7 +12,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 ### Issue tracker
 
-Issues live as local markdown files under `.scratch/`. See `docs/agents/issue-tracker.md`.
+Issues live as GitHub issues on `shawub/archouse-learn`. See `docs/agents/issue-tracker.md`.
 
 ### Triage labels
 
