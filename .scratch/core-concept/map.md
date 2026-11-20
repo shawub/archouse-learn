@@ -1,5 +1,7 @@
 Type: wayfinder:map
+Status: closed
 Coordinator: charting-cca271d2
+Spec: [core-concept spec](./spec.md)
 
 ## Destination
 
