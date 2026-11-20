@@ -25,3 +25,7 @@ Single-context: one glossary at `GLOSSARY.md`, ADRs in `docs/adr/`. See `docs/ag
 ### External peers
 
 auto — selects the Claude adapter when available (model: default, effort: medium). See `docs/agents/cross-model.json`.
+
+### Repo purpose
+
+`PURPOSE.md` is the product north star. Read it before naming a wayfinder destination, during triage, and during grilling to validate scope. See `docs/agents/purpose.md` for how to evolve it.
