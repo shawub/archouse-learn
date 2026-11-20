@@ -93,6 +93,7 @@ model Course {
   id          String   @id @default(cuid())
   title       String
   description String?  @db.Text
+  published   Boolean  @default(false)
   subject     Subject
   keyStage    KeyStage
   teacherId   String
