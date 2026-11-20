@@ -16,6 +16,7 @@ Domain: UK schools, KeyStage KS1–KS4, 11 curriculum subjects. Load `grilling` 
 - [Teacher public profile and course publishing states](decisions/02-teacher-profile.md): Profiles are public (browsable by anyone); findable by subject and KeyStage; metadata only before subscribing; courses publish and unpublish.
 - [Learner sign-up, role claiming, and safeguarding design](decisions/04-learner-signup-safeguarding.md): Any user can publish (teacher) and/or subscribe (learner) — non-exclusive capabilities. No age collected; universal child-safe defaults. Interests = subject/KeyStage filters. Learners report content; platform removes and can suspend.
 - [Pitched questions and content requests](decisions/05-pitched-questions.md): Questions attach to lessons (not courses), private to teacher by default; teacher controls Q&A visibility. Content requests go to teacher only. Learner identity never exposed.
+- [Live seminar concept](decisions/06-seminar-concept.md): Standalone teacher events (not course-attached); subscription = right to RSVP; teacher sets capacity limit; one-way broadcast + typed questions; recording available to all subscribers after session.
 
 ## Added so far
 
@@ -39,14 +40,17 @@ Domain: UK schools, KeyStage KS1–KS4, 11 curriculum subjects. Load `grilling` 
 - Constraint: no direct messaging (safeguarding boundary by omission)
 - Interaction: lesson questions (private-first, teacher-controlled Q&A)
 - Interaction: content requests (teacher-only inbox, not visible to other learners)
+- Interaction: Seminar (standalone live broadcast + typed questions + post-session recording)
+- Model: RSVP with teacher-set capacity limit
 
 ## Not yet specified
 
-- Seminar technology: beyond "scheduled live session, teacher-hosted, subscriber-attended" — platform choice (Zoom? custom?), async replay, recording policy
-- Payment and monetisation model: free tier, subscription, school licence, teacher revenue share
-- Notification system: how learners are informed of new content, upcoming seminars, teacher responses to questions
-- Mobile: native apps or PWA
+<!-- empty — all fog cleared -->
 
 ## Out of scope
 
 - School admin role: the platform has no institutional school accounts and no teacher gate; schools have no admin role in the open platform concept.
+- Seminar technology: platform choice (Zoom, custom WebRTC, etc.) and recording retention policy are build decisions, not concept spec decisions.
+- Payment and monetisation: pricing model (free, paid subscription, school licence) is a business model decision; the concept spec describes access and interaction patterns only.
+- Notification mechanism: notification triggers are implied by the subscription, seminar, and Q&A models; delivery mechanism (email, push, in-app) is a build decision.
+- Mobile: native apps vs PWA is a platform/delivery decision, not a concept spec decision.

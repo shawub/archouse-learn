@@ -37,7 +37,7 @@ The primary unit of published content. A teacher publishes one or more Courses; 
 _Avoid_: Module, Class
 
 **Seminar**:
-A live session hosted by a teacher, available for subscribed learners to attend. Distinct from a Course Lesson.
+A standalone live event hosted by a teacher (not attached to a specific course). Subscription grants the right to RSVP; the teacher sets a capacity limit. Live sessions are one-way broadcasts with learner-submitted typed questions. A recording is available to all subscribers after the session.
 _Avoid_: Session, Class, Live lesson, Webinar
 
 **Ask**:
