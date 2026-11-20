@@ -1,4 +1,4 @@
-Status: ready-for-agent
+Status: ticketed
 Category: enhancement
 
 ## Parent
