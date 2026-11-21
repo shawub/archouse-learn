@@ -15,4 +15,4 @@ EXPOSE 3000
 ENV NODE_ENV=production
 
 # Build at startup so runtime env vars (DATABASE_URL etc.) are available during build
-CMD ["sh", "-c", "pnpm build && pnpm start"]
+CMD ["sh", "-c", "pnpm build && npx prisma migrate deploy && pnpm start"]
