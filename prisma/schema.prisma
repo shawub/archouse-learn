@@ -85,6 +85,9 @@ model User {
   // Teacher-level subscriptions
   subscriptions Subscription[] @relation("UserSubscriptions")
   subscribers   Subscription[] @relation("UserSubscribers")
+
+  // Content moderation
+  contentReports ContentReport[] @relation("UserContentReports")
 }
 
 enum Role {
@@ -196,4 +199,27 @@ model LessonProgress {
   lesson  Lesson @relation(fields: [lessonId], references: [id])
 
   @@unique([studentId, lessonId])
+}
+
+// A user's report of a course or lesson, queued for operator review. No
+// automated action is taken in v1. contentType ('course' | 'lesson'),
+// category and status are validated in app code (`src/lib/report-content.ts`).
+// onDelete: SetNull — the report is retained for safeguarding when the
+// reporter's account is deleted; only the reporter link is nulled.
+model ContentReport {
+  id          String   @id @default(cuid())
+  reporterId  String?
+  contentId   String
+  contentType String
+  category    String   @default("other")
+  reason      String   @db.Text
+  status      String   @default("open")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  reporter User? @relation("UserContentReports", fields: [reporterId], references: [id], onDelete: SetNull)
+
+  @@unique([reporterId, contentType, contentId])
+  @@index([contentType, contentId])
+  @@index([status])
 }
