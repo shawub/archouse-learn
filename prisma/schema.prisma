@@ -91,6 +91,9 @@ model User {
 
   // Discovery filters
   interests UserInterest[]
+
+  // Account deletion requests (operator-actioned)
+  deletionRequests DeletionRequest[]
 }
 
 enum Role {
@@ -239,5 +242,27 @@ model ContentReport {
 
   @@unique([reporterId, contentType, contentId])
   @@index([contentType, contentId])
+  @@index([status])
+}
+
+// A user's request to delete their own account, queued for an operator to
+// action. Nothing is erased automatically in v1. status ('pending' | ...) is
+// validated in app code (`src/lib/account-deletion.ts`).
+// @@unique([userId, status]) guarantees at most one pending request per user,
+// which backs the idempotent request flow.
+// onDelete: Cascade — chosen deliberately: a DeletionRequest is a request
+// about an account, so once the account is gone there is nothing left to
+// action and the request is removed with it (contrast ContentReport, which is
+// retained for safeguarding).
+model DeletionRequest {
+  id          String    @id @default(cuid())
+  userId      String
+  requestedAt DateTime  @default(now())
+  status      String    @default("pending")
+  processedAt DateTime?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, status])
   @@index([status])
 }
