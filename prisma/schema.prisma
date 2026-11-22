@@ -88,6 +88,9 @@ model User {
 
   // Content moderation
   contentReports ContentReport[] @relation("UserContentReports")
+
+  // Discovery filters
+  interests UserInterest[]
 }
 
 enum Role {
@@ -131,6 +134,21 @@ enum KeyStage {
   KS2 // Years 3–6, ages 7–11
   KS3 // Years 7–9, ages 11–14
   KS4 // Years 10–11, ages 14–16
+}
+
+// A user's declared discovery filter (Interest): a subject + KeyStage pair.
+// Stored as a set — replaced wholesale on update. onDelete: Cascade, as
+// interests are personal data and go with the account.
+model UserInterest {
+  id       String   @id @default(cuid())
+  userId   String
+  subject  Subject
+  keyStage KeyStage
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, subject, keyStage])
+  @@index([userId])
 }
 
 model Lesson {
