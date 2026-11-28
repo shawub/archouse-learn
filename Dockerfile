@@ -23,5 +23,6 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY --from=builder /app/.next ./.next
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 COPY prisma ./prisma
+COPY prisma.config.ts ./
 EXPOSE 3000
 CMD ["sh", "-c", "npx prisma migrate deploy && pnpm start"]

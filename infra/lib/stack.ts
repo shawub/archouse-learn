@@ -124,6 +124,8 @@ export class ArcLearnStack extends cdk.Stack {
       domainZone: zone,
       redirectHTTP: true,
       healthCheckGracePeriod: cdk.Duration.seconds(120),
+      circuitBreaker: { rollback: true },
+      minHealthyPercent: 100,
     })
 
     service.targetGroup.configureHealthCheck({
