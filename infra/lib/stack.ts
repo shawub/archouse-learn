@@ -141,7 +141,7 @@ export class ArcLearnStack extends cdk.Stack {
     })
 
     new cloudwatch.Alarm(this, 'Error5xx', {
-      metric: service.loadBalancer.metricHttpCodeElb(elbv2.HttpCodeElb.ELB_5XX_COUNT, {
+      metric: service.loadBalancer.metrics.httpCodeElb(elbv2.HttpCodeElb.ELB_5XX_COUNT, {
         period: cdk.Duration.minutes(5),
         statistic: 'Sum',
       }),
@@ -152,7 +152,7 @@ export class ArcLearnStack extends cdk.Stack {
     }).addAlarmAction(new cwActions.SnsAction(alarmTopic))
 
     new cloudwatch.Alarm(this, 'NoHealthyHosts', {
-      metric: service.targetGroup.metricHealthyHostCount({
+      metric: service.targetGroup.metrics.healthyHostCount({
         period: cdk.Duration.minutes(1),
       }),
       threshold: 1,
