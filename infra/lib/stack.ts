@@ -58,7 +58,7 @@ export class ArcLearnStack extends cdk.Stack {
           RESEND_API_KEY: 'REPLACE_ME',
           GOOGLE_CLIENT_ID: 'REPLACE_ME',
           GOOGLE_CLIENT_SECRET: 'REPLACE_ME',
-          ALLOWED_ORIGINS: 'https://learn.archouse.ltd',
+          ALLOWED_ORIGINS: 'https://learn.shoggs.co.uk',
         })
       ),
     })
@@ -104,11 +104,11 @@ export class ArcLearnStack extends cdk.Stack {
 
     // ── Certificate + DNS ────────────────────────────────────────────────────
     const zone = route53.HostedZone.fromLookup(this, 'Zone', {
-      domainName: 'archouse.ltd',
+      domainName: 'learn.shoggs.co.uk',
     })
 
     const cert = new acm.Certificate(this, 'Cert', {
-      domainName: 'learn.archouse.ltd',
+      domainName: 'learn.shoggs.co.uk',
       validation: acm.CertificateValidation.fromDns(zone),
     })
 
@@ -120,7 +120,7 @@ export class ArcLearnStack extends cdk.Stack {
       publicLoadBalancer: true,
       protocol: elbv2.ApplicationProtocol.HTTPS,
       certificate: cert,
-      domainName: 'learn.archouse.ltd',
+      domainName: 'learn.shoggs.co.uk',
       domainZone: zone,
       redirectHTTP: true,
       healthCheckGracePeriod: cdk.Duration.seconds(120),
